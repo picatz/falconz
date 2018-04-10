@@ -20,6 +20,9 @@ client = Falconz.client.new
 Upload a local file to the sandbox.
 ```ruby
 client.submit_file(file: "malware.exe", environment_id: 100)
+# => {"job_id"=>"5acc00b27ca3e138c14ab0e4",
+#     "environment_id"=>"100",
+#     "sha256"=>"015e5c626b993855fa88ce4c9758bc780fac3774c3d8bfcfae62833affc31e00"}
 ```
 
 Search for results related to a given hash (MD5/SHA1/SHA256).
