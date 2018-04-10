@@ -4,6 +4,7 @@ require_relative "apis/search.rb"
 require_relative "apis/key.rb"
 require_relative "apis/system.rb"
 require_relative "apis/submission.rb"
+require_relative "apis/feed.rb"
 
 module Falconz
   class Client 
@@ -13,12 +14,49 @@ module Falconz
     include APIs::Search
     include APIs::System
     include APIs::Submission
+    include APIs::Feed
 
-    URL = "https://www.hybrid-analysis.com/api/v2"
+    def initialize
+      @url = "https://www.hybrid-analysis.com/api/v2"
 
-    HEADER = { 
-      "User-Agent": "Falcon Sandbox", 
-      "api-key": ENV["HYBRID_ANALYSIS_API_KEY"]
-    }
+      @header = { 
+        "User-Agent" => "Falcon Sandbox", 
+        "api-key" => ENV["HYBRID_ANALYSIS_API_KEY"]
+      }
+    end
+   
+    def valid_user_agent?
+      return true if @header["api-key"] && @header["User-Agent"] == "Falcon Sandbox"
+      false
+    end
+
+    def api_key?
+      return true if @header["api-key"]
+      false
+    end
+
+    def api_key
+      @header["api-key"]
+    end
+    
+    def api_key=(k)
+      @header["api-key"] = k
+    end
+
+    def url
+      @url
+    end
+
+    def url=(u)
+      @url = u
+    end
+
+    def header
+      @header
+    end
+
+    def header=(h)
+      @header
+    end
   end
 end
