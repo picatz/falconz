@@ -1,18 +1,11 @@
 module Falconz
   module REST
     module GET
-      def get_request(path, **options)
-        if options[:query]
-          response = HTTParty.get(Falconz::Client::URL + path, 
-                                  headers: Falconz::Client::HEADER, 
-                                  query: options[:query])
-        else
-          response = HTTParty.get(Falconz::Client::URL + path, 
-                                  headers: Falconz::Client::HEADER)
-        end
+      def get_request(path, json: false, **options)
+        response = HTTParty.get(url + path, headers: header)
         if response.success?
-          return response unless options[:json]
-          return response.body
+          return response.body if json
+          return response 
         else
           binding.pry
           raise response.to_h
