@@ -1,5 +1,7 @@
 # Falconz
-> Falcon Malware Sandbox API Connector
+> Falcon Malware Sandbox APIv2 Connector
+
+Falcon Sandbox has a powerful and simple API that can be used to submit files/URLs for analysis, pull report data, but also perform advanced search queries. The API is open and free to the entire IT-security community.
 
 ## Installation
 
@@ -13,14 +15,41 @@ Currently requires the `HYBRID_ANALYSIS_API_KEY` enviroment variable set to comm
 require "falconz"
 
 client = Falconz.client.new
+```
 
-client.number_of_environments
+Upload a local file to the sandbox.
+```ruby
+client.submit_file(file: "malware.exe", environment_id: 100)
+```
 
-client.current_key
+Search for results related to a given hash (MD5/SHA1/SHA256).
+```ruby
+# md5
+client.search_hash("4d86e66537ac0130cce541890e1d9c4b")
 
-client.submit_file(file: "README.md", environment_id: 100)
+# sha1
+client.search_hash("62f585da3fea334b83cb8b4cee9b605d901c825c")
 
+# sha256
 client.search_hash("82d14e45e6a0586e66f359c6854bd90b6180b92d66d3db03e5e85234edfdcc04")
+```
+
+Check the number of environments available to use.
+```ruby
+client.number_of_environments
+# => 5
+```
+
+Get information about current API key being used.
+```ruby
+client.current_key
+# => {"api_key"=>"130cce541890e1d9c4b34b83cb8b4cee9854bd90b6180b9",
+#  "auth_level"=>100,
+#  "auth_level_name"=>"default",
+#  "user"=>
+#   {"id"=>"4cee9b605d901c825c",
+#    "email"=>"kgruber1@emich.edu",
+#    "name"=>"picat"}}
 ```
 
 ## License
