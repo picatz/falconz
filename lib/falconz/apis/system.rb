@@ -62,14 +62,14 @@ module Falconz
         end
       end
 
-      def enviroment_windows?(id)
+      def environment_windows?(id)
         env = find_environment_by_id(id)
         return nil if env.nil?
         return true if env["architecture"] == "WINDOWS"
         false
       end
       
-      def enviroment_linux?(id)
+      def environment_linux?(id)
         env = find_environment_by_id(id)
         return nil if env.nil?
         return true if env["architecture"] == "LINUX"
