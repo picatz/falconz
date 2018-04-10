@@ -2,8 +2,8 @@ module Falconz
   module REST
     module POST 
       def post_request(path, json: false, **options)
-        response = HTTParty.post(Falconz::Client::URL + path, 
-                                headers: Falconz::Client::HEADER, 
+        response = HTTParty.post(url + path, 
+                                headers: header,
                                 body: options)
         if response.success?
           return response.body if json
