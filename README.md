@@ -5,7 +5,7 @@
   <img alt="i like birds" src="falcon.jpg"/>
 <p>
 
-Falcon Sandbox has a powerful and simple API that can be used to submit files/URLs for analysis, pull report data, but also perform advanced search queries. The API is open and free to the entire IT-security community.
+[Falcon Sandbox](https://www.hybrid-analysis.com/docs/api/v2) has a powerful and simple API that can be used to submit files/URLs for analysis, pull report data, but also perform advanced search queries. The API is open and free to the entire IT-security community.
 
 ## Installation
 
@@ -13,7 +13,7 @@ Falcon Sandbox has a powerful and simple API that can be used to submit files/UR
 
 ## Usage
 
-Currently requires the `HYBRID_ANALYSIS_API_KEY` enviroment variable set to communicate with the API.
+Currently requires the `HYBRID_ANALYSIS_API_KEY` environment variable set to communicate with the API.
 
 ```ruby
 require "falconz"
