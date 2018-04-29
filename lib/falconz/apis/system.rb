@@ -1,10 +1,10 @@
 module Falconz
   module APIs
     module System
-      def system_heartbeat(wait = 15, **options)
-        return get_request("/system/heartbeat", options) unless block_given?
+      def system_heartbeat(wait = 15)
+        return get_request("/system/heartbeat") unless block_given?
         while true
-          yield get_request("/system/heartbeat", options)
+          yield get_request("/system/heartbeat")
           sleep wait
         end
       end
@@ -13,25 +13,25 @@ module Falconz
         system_heartbeat["number_of_seconds_since_last_update"]
       end
 
-      def total_submissions_in_system(**options)
-        get_request("/system/total-submissions", options)["value"]
+      def total_submissions_in_system
+        get_request("/system/total-submissions")["value"]
       end
       
-      def in_progress(**options)
-        return get_request("/system/in-progress", options)["values"] unless block_given?
-        get_request("/system/in-progress", options)["values"].each do |value| 
+      def in_progress
+        return get_request("/system/in-progress")["values"] unless block_given?
+        get_request("/system/in-progress")["values"].each do |value| 
           hash, env = value.split(":")
           yield hash, env 
         end
       end
       
-      def backend(**options)
-        get_request("/system/backend", options)
+      def backend
+        get_request("/system/backend")
       end
       
-      def environments(**options)
-        return get_request("/system/environments", options) unless block_given?
-        get_request("/system/environments", options).each do |enviroment|
+      def environments
+        return get_request("/system/environments") unless block_given?
+        get_request("/system/environments").each do |enviroment|
           yield enviroment
         end
       end
@@ -45,6 +45,14 @@ module Falconz
         environments do |env|
           return env if env["id"] == id
         end
+      end
+
+      def enviroment_ids(refresh: false)
+        if refresh or @enviroment_ids.nil?
+          @enviroment_ids = environments.map { |env| env["id"] } 
+        end
+        return @enviroment_ids unless block_given?
+        @environment_ids.each { |env| yield id }
       end
 
       def enviroments_busy_percentages
@@ -76,16 +84,16 @@ module Falconz
         false
       end
 
-      def system_state(**options)
-        get_request("/system/state", options)
+      def system_state
+        get_request("/system/state")
       end
 
-      def system_version(**options)
-        get_request("/system/version", options)
+      def system_version
+        get_request("/system/version")
       end
       
-      def queue_size(**options)
-        get_request("/system/queue-size", options)["value"]
+      def queue_size
+        get_request("/system/queue-size")["value"]
       end
     end
   end
