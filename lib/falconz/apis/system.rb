@@ -40,10 +40,14 @@ module Falconz
       # get the in progress jobs
       # https://www.hybrid-analysis.com/docs/api/v2#/System/get_system_in_progress
       def in_progress
-        return get_request("/system/in-progress")["values"] unless block_given?
-        get_request("/system/in-progress")["values"].each do |value| 
-          hash, env = value.split(":")
-          yield hash, env 
+        jobs = get_request("/system/in-progress")["values"].map do |job| 
+          kv = {}
+          kv[:hash], kv[:environment] = job.split(":")
+          kv
+        end
+        return jobs unless block_given?
+        jobs.each do |job|
+          yield job
         end
       end
 
@@ -53,6 +57,8 @@ module Falconz
         get_request("/system/backend")
       end
 
+      # return information about available execution environments
+      # https://www.hybrid-analysis.com/docs/api/v2#/System/get_system_environments
       def environments
         return get_request("/system/environments") unless block_given?
         get_request("/system/environments").each do |environment|
@@ -60,10 +66,12 @@ module Falconz
         end
       end
 
+      # return the number of environments in the system
       def number_of_environments
         environments.count
       end
 
+      # find an environment by an ID
       def find_environment_by_id(id)
         id = id.to_i
         environments do |env|
@@ -71,9 +79,10 @@ module Falconz
         end
       end
 
+      # list available environment IDs
       def environment_ids(refresh: false)
         if refresh or @environment_ids.nil?
-          @enviromment_ids = environments.map { |env| env["id"] } 
+          @environment_ids = environments.map { |env| env["id"] } 
         end
         return @environment_ids unless block_given?
         @environment_ids.each { |env| yield id }
