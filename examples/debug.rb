@@ -4,5 +4,4 @@ require 'pry'
 
 client = Falconz::Client.new
 
-
 binding.pry
