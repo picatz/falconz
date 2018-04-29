@@ -51,6 +51,12 @@ module Falconz
         end
       end
 
+      # number of jobs currently being processed
+      # @see #in_progress
+      def in_progress_count
+        get_request("/system/in-progress")["values"].count
+      end
+
       # return information about configured backend nodes
       # https://www.hybrid-analysis.com/docs/api/v2#/System/get_system_backend
       def backend
