@@ -41,14 +41,41 @@ client.submit_file(file: "malware.exe", environment_id: 100)
 
 Search for results related to a given hash (MD5/SHA1/SHA256).
 ```ruby
-# md5
-client.search_hash("4d86e66537ac0130cce541890e1d9c4b")
-
-# sha1
-client.search_hash("62f585da3fea334b83cb8b4cee9b605d901c825c")
-
-# sha256
-client.search_hash("82d14e45e6a0586e66f359c6854bd90b6180b92d66d3db03e5e85234edfdcc04")
+client.search_hash("cc311a06612f1b420cf788bd8883fa9dbd34d33ba8fa2443b86b7f88c7a75c2c")
+# => [{"job_id"=>"5ae641ad7ca3e175d57a6013",
+#   "environment_id"=>"100",
+#   "environment_description"=>"Windows 7 32 bit",
+#   "size"=>3127633,
+#   "type"=>"PE32 executable (GUI) Intel 80386, for MS Windows",
+#   "type_short"=>["peexe"],
+#   "target_url"=>nil,
+#   "state"=>"SUCCESS",
+#   "submit_name"=>"sospecha.exe",
+#   "md5"=>"7421fed9ae4b6643913b080718b919cc",
+#   "sha1"=>"4f86bc7a578b6ac9d1e5f1fc325917e436f60520",
+#   "sha256"=>"cc311a06612f1b420cf788bd8883fa9dbd34d33ba8fa2443b86b7f88c7a75c2c",
+#   "sha512"=>"684558a218f6039ba718bfeac763f529222474498a41fdfa6994c8a3955b2686c07fd053d1afab73b2403b9f98fd3cf7112faec220c1b12b574c6a7fea828a8b",
+#   "ssdeep"=>"49152:32uJI9LH1MuvxlFl7Z0pnZASuwSpW/vnjC91R8rsiX8L1ViGiJJLQRRtaU:muwLH6oF0pZAS6W/vWzRo8iGi2RtaU",
+#   "imphash"=>"884310b1928934402ea6fec1dbd3cf5e",
+#   "av_detect"=>1,
+#   "vx_family"=>"TSGeneric",
+#   "url_analysis"=>false,
+#   "analysis_start_time"=>"2018-04-30T00:06:01-05:00",
+#   "threat_score"=>85,
+#   "interesting"=>false,
+#   "threat_level"=>2,
+#   "verdict"=>"malicious",
+#   "certificates"=>[],
+#   "domains"=>[],
+#   "classification_tags"=>[],
+#   "compromised_hosts"=>[],
+#   "hosts"=>[],
+#   "total_network_connections"=>0,
+#   "total_processes"=>5,
+#   "total_signatures"=>56,
+#   "extracted_files"=>[],
+#   "processes"=>[],
+#   "file_metadata"=>nil}]
 ```
 
 Check the number of environments available to use.
