@@ -15,7 +15,11 @@ module Falconz
         get_request("/report/#{id}/hash", options)
       end
 
-      # TODO: Add misisng https://www.hybrid-analysis.com/docs/api/v2#/Report/post_report_summary
+      # return summary of multiple submissions (bulk query)
+      # https://www.hybrid-analysis.com/docs/api/v2#/Report/post_report_summary
+      def report_summary(**options)
+        post_request("/report/summary", options)
+      end
 
       # downloading report data (e.g. JSON, XML, PCAP)
       # https://www.hybrid-analysis.com/docs/api/v2#/Report/get_report__id__file__type_
