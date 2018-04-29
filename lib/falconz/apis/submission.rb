@@ -34,15 +34,6 @@ module Falconz
       def submit_dropped_file(**options)
         post_request("/submit/dropped-file", options)
       end
-
-      # determine a SHA256 that an online file or URL 
-      # submission will have when being processed by 
-      # the system. Note: this is useful when looking 
-      # up URL analysis
-      # https://www.hybrid-analysis.com/docs/api/v2#/Submission/post_submit_hash_for_url
-      def hash_for_url(**options)
-        post_request("/submit/hash-for-url", options)
-      end
     end
   end
 end
