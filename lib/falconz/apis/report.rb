@@ -44,18 +44,24 @@ module Falconz
       end
 
       private
+      
+      # raise an error if the given ID isn't (probably) valid
       def raise_if_id_is_not_valid(id)
         unless id_is_in_probably_valid_format?(id)
           raise "need if in format: ‘jobId’ or ‘sha256:environmentId’"
         end
       end
 
+      # check if a given ID is probably valid or not
+      # @see #report_file
       def id_is_in_probably_valid_format?(id)
         return false if id.nil?
         return false unless id.is_a? String
         return true 
       end
 
+      # valid report file types for #report_file
+      # @see #report_file
       VALID_REPORT_FILE_TYPES = {
         "xml":  "The XML report as application/xml content and *.gz compressed.",
         "json": "The JSON report as application/json content",
@@ -72,11 +78,15 @@ module Falconz
         "pcap": "The PCAP network traffic capture file as application/octet-stream and *.gz compressed."
       }
 
+      # check if a report file type argument is valid
+      # @see #report_file
       def report_file_type_is_valid?(type)
         return true if VALID_REPORT_FILE_TYPES.keys.include? type.to_s.downcase
         false
       end
 
+      # raise an error if the report file type argument isn't valid
+      # @see #report_file
       def raise_if_report_file_type_is_not_valid(type)
         unless report_file_type_is_valid?(id)
           raise "Type requires https://www.reverse.it/docs/api/v2#/Report/get_report__id__file__type:\n#{VALID_REPORT_FILE_TYPES}"
