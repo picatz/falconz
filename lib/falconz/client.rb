@@ -5,6 +5,7 @@ require_relative "apis/key.rb"
 require_relative "apis/system.rb"
 require_relative "apis/submission.rb"
 require_relative "apis/feed.rb"
+require_relative "apis/report.rb"
 
 module Falconz
   class Client 
@@ -15,6 +16,7 @@ module Falconz
     include APIs::System
     include APIs::Submission
     include APIs::Feed
+    include APIs::Report
 
     def initialize
       @url = "https://www.hybrid-analysis.com/api/v2"
