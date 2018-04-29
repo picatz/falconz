@@ -40,7 +40,7 @@ module Falconz
       # the system. Note: this is useful when looking 
       # up URL analysis
       # https://www.hybrid-analysis.com/docs/api/v2#/Submission/post_submit_hash_for_url
-      def hash_from_url(**options)
+      def hash_for_url(**options)
         post_request("/submit/hash-for-url", options)
       end
     end
