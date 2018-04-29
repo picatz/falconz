@@ -26,7 +26,7 @@ module Falconz
       # have when being processed by the system. Note: this is useful when looking up URL analysis
       # https://www.hybrid-analysis.com/docs/api/v2#/Submission/post_submit_hash_for_url
       def hash_for_url(url)
-        post_request("/submit/url-for-analysis", url: url)
+        post_request("/submit/hash-for-url", url: url)
       end
      
       # submit dropped file for analysis
