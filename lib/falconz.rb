@@ -11,4 +11,11 @@ module Falconz
   def self.client
     Client
   end
+
+  def self.response_is_ok?(resp)
+    return false unless resp.respond_to?(:has_key?)
+    return false unless resp.has_key? "status"
+    return true if resp["status"].match?("ok")
+    return false
+  end
 end
