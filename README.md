@@ -21,6 +21,16 @@ require "falconz"
 client = Falconz.client.new
 ```
 
+Get the current file hashes that are being processed along with their environment IDs.
+```ruby
+client.in_progress
+=> [{:hash=>"b8560ce1bacb5515fdaef7cb3615a8172663da749b038687ab4a439cbf64f23b", :environment=>"100"},
+ {:hash=>"4f456ae8d592a73be8e898384a6b78cf1406965bcb2cea38ffa976c1084acb74", :environment=>"120"},
+ {:hash=>"6e206c74d4b9796264e5e2cb351e563806320e8d6d794fba38d3be93aa4b1bb5", :environment=>"100"},
+ {:hash=>"8d5bd56a19d06d46c8e92552f0bf81fa38cbf3365ab022e97075810be18000d9", :environment=>"120"},
+ {:hash=>"497f631d332b6b242528409778ecb7a778b1b50d6964139b549fdd71410381bc", :environment=>"120"}]
+```
+
 Upload a local file to the sandbox.
 ```ruby
 client.submit_file(file: "malware.exe", environment_id: 100)
