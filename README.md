@@ -13,12 +13,12 @@
 
 ## Usage
 
-Currently requires the `HYBRID_ANALYSIS_API_KEY` environment variable set to communicate with the API.
+To create a client, we can specify our API key or set the `HYBRID_ANALYSIS_API_KEY` environment variable to communicate with the API.
 
 ```ruby
 require "falconz"
 
-client = Falconz.client.new
+client = Falconz.client.new(key: "your_api_key") 
 ```
 
 Get the current file hashes that are being processed along with their environment IDs.
