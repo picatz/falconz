@@ -8,6 +8,7 @@ module Falconz
       # access a feed of last 250 reports over 24h
       #
       # == Example
+      #   # create a new client
       #   client = Falconz.client.new
       #
       #   client.latest_feed do |data|
@@ -15,6 +16,13 @@ module Falconz
       #     puts data.to_json
       #   end
       #
+      #   # or, if you'd like, you can be a fancy shamncy pants 
+      #
+      #   client.latest_feed { |data| puts data.to_json }
+      #
+      #   feed = client.latest_feed
+      # 
+      # @return 
       # https://www.hybrid-analysis.com/docs/api/v2#/Feed/get_feed_latest
       def latest_feed
         # return response unless block was given ( like the in-line example )
@@ -32,6 +40,13 @@ module Falconz
 
       # A little wrapper method to #latest_feed that returns the count
       # of the amount of data found in the feed.
+      # 
+      # == Example
+      #   # create a new client
+      #   client = Falconz.client.new
+      #   
+      #   # print latest feed found to the screen
+      #   puts client.latest_feed_count
       #
       # @return [Integer]
       # @see #latest_feed
