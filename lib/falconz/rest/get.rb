@@ -8,7 +8,7 @@ module Falconz
       def get_request(path)
         response = HTTParty.get(url + path, headers: header)
         return response if response.success?
-        raise response
+        raise RuntimeError, response
       end
     end
   end

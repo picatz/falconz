@@ -9,8 +9,7 @@ module Falconz
           return response.body if json
           return response
         else
-          binding.pry
-          raise response.to_h
+          raise RuntimeError, response.to_h
         end
       end
     end
