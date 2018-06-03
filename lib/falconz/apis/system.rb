@@ -58,6 +58,28 @@ module Falconz
       end
 
       # return information about configured backend nodes
+      #
+      # == Example
+      #   
+      #   client = Falconz.client.new
+      #
+      #   backend_information = client.backend
+      #
+      #   # example of accessing specific information from hash
+      #   puts backend_information["version"]
+      #
+      #   # all the keys in the hash
+      #   puts backend_information.keys
+      #
+      #   # count the number of backend nodes
+      #   puts backend_information["nodes"].count
+      #
+      #   # you can get hell'a fancy
+      #   client.backend["nodes"].map { |node| node["environments"].map { |e| [e["architecture"], e["analysis_mode"]] } }.flatten(1).uniq.each do |arch, mode|
+      #     puts "The " + arch + " architecture supports " + mode + " level analysis." 
+      #   end
+      #  
+      # @return [Hash] all the information about the system backend
       # https://www.hybrid-analysis.com/docs/api/v2#/System/get_system_backend
       def backend
         get_request("/system/backend")
@@ -134,16 +156,49 @@ module Falconz
       end
 
       # return information about the instance version
+      #
+      # == Example
+      #
+      #   client = Falconz.client.new
+      #   
+      #   # get system version info, as a hash
+      #   version_info = client.system_version
+      #   # => {"instance"=>"8.0-5305cf9", "sandbox"=>"8.10", "api"=>"2.1.5"}
+      #
+      #   # iterate over each lil'bit of information
+      #   version_info.each do |name, value|
+      #     puts name + " " + value
+      #   end
+      #
+      #   # you can also access the information directly
+      #   puts "found API version " + version_info["api"]
+      # 
       # https://www.reverse.it/docs/api/v2#/System/get_system_version
       def system_version
         get_request("/system/version")
       end
 
-      # return information about queue size
+      # return information about system queue size
+      #
+      # == Example
+      #
+      #   client = Falconz.client.new
+      #   
+      #   # print the system queue size to the screen
+      #   puts client.system_queue_size
+      #
       # https://www.reverse.it/docs/api/v2#/System/get_system_queue_size
-      def queue_size
-        get_request("/system/queue-size")["value"]
+      def system_queue_size
+        @cached_queue_size = get_request("/system/queue-size")["value"]
+      rescue => error
+        if JSON.parse(error.message)["code"] == 429 && @cached_queue_size
+          return @cached_queue_size
+        end
+        raise error
       end
+      
+      # For backwards compatibility with the old method API.
+      alias queue_size system_queue_size
     end
   end
 end
