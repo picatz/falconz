@@ -1,6 +1,6 @@
 module Falconz
   module APIs
-    # A module consisting of the method associted with the 
+    # A module consisting of the method associated with the 
     # Feed section of the API.
     #
     # @author Kent 'picat' Gruber
@@ -31,9 +31,9 @@ module Falconz
       end
 
       # A little wrapper method to #latest_feed that returns the count
-      # of the ammount of data found in the feed.
+      # of the amount of data found in the feed.
       #
-      # @return [void]
+      # @return [Integer]
       # @see #latest_feed
       def latest_feed_count
         # capture response
