@@ -2,7 +2,7 @@
 > Falcon Malware Sandbox APIv2 Connector
 
 <p align="center">
-  <img alt="i like birds" src="falcon.jpg"/>
+  <img alt="i like birds" src="https://github.com/picatz/falconz/blob/master/falcon.jpg"/>
 <p>
 
 [Falcon Sandbox](https://www.hybrid-analysis.com/docs/api/v2) has a powerful and simple API that can be used to submit files/URLs for analysis, pull report data, but also perform advanced search queries. The API is open and free to the entire IT-security community.
