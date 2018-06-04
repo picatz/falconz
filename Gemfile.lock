@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    falconz (1.0.1)
+    falconz (1.0.2)
       httparty (~> 0.16.2)
 
 GEM
