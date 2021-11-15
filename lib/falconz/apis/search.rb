@@ -17,7 +17,7 @@ module Falconz
         options = {}
         options[:hash] = string unless string.nil?
         raise "Requires a MD5, SHA1 or SHA256 hash" if options[:hash].nil?
-        post_request("/search/hash", options)
+        post_request("/search/hash", **options)
       end
       
       # Get a summaries for any amount of given hashes.
@@ -42,7 +42,7 @@ module Falconz
         options = {}
         options[:hashes] = strings unless strings.nil? or strings.empty?
         raise "Requires MD5, SHA1 or SHA256 hashes" if options[:hashes].nil?
-        post_request("/search/hashes", options)
+        post_request("/search/hashes", **options)
       end
      
       # Search the database using search terms.
